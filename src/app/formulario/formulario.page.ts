@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatabaseService } from '../servico/database.service';
 
 @Component({
   selector: 'app-formulario',
@@ -7,15 +8,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./formulario.page.scss'],
 })
 
-export class FormularioPage implements OnInit {
-
-  titulo= 'Cadastro';
+export class FormularioPage implements OnInit{
+  titulo = 'Cadastro';
   imagem = 'https://cdn.pixabay.com/photo/2015/09/21/14/24/supermarket-949913_1280.jpg';
   nameButton = 'Cadastrar';
 
-  form!:FormGroup
+  form!:FormGroup;
   
-  constructor(private formBuilder:FormBuilder) {}
+  constructor(
+    private formBuilder:FormBuilder,
+    private bancoDados:DatabaseService
+    ){}
 
   ngOnInit() {
     this.validaForm();
@@ -26,5 +29,9 @@ export class FormularioPage implements OnInit {
       item: ['',[Validators.required, Validators.minLength(3)]],
       quant: ['',[Validators.required, Validators.maxLength(10)]]
     })
+  }
+
+  cadastroButton(){
+    this.bancoDados.cadastro(this.form.value);
   }
 }

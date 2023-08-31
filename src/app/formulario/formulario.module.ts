@@ -16,6 +16,8 @@ import { FormularioPage } from './formulario.page';
     FormularioPageRoutingModule,
     ReactiveFormsModule
   ],
+
   declarations: [FormularioPage]
 })
+
 export class FormularioPageModule {}

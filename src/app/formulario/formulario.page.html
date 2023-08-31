@@ -9,7 +9,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-img [src]="imagem"></ion-img>
-  <form [formGroup]="form">
+  <form [formGroup]="form" (submit)="cadastroButton()">
     <ion-item>
       <ion-label position="floating">Nome do Item: </ion-label>
       <ion-input type="text" formControlName="item"></ion-input>
@@ -20,6 +20,6 @@
       <ion-input type="text" formControlName="quant"></ion-input>
     </ion-item>
     <br> 
-    <ion-button color="secondary" expand="block" [disabled]="form.invalid">{{nameButton}}</ion-button>
+    <ion-button color="secondary" expand="block" [disabled]="form.invalid" type="submit">{{nameButton}}</ion-button>
   </form>
 </ion-content>
