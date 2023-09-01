@@ -10,7 +10,7 @@ export class DatabaseService{
   readonly API = 'http://localhost:3000/produtos/';
 
   httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'aplication/json'})
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
   }
 
   constructor(private http: HttpClient){}
