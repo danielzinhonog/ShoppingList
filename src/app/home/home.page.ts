@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Produtos } from '../model/produto.mdodel';
-import { DatabaseService } from '../servico/database.service';
 import { LoadingController } from '@ionic/angular';
+import { FirebaseService } from '../servico/firebase.service';
 
 @Component({
   selector: 'app-home',
@@ -13,16 +12,16 @@ export class HomePage implements OnInit{
   titulo = 'ShoppingList';
   imagem = 'https://cdn.pixabay.com/photo/2015/09/21/14/24/supermarket-949913_1280.jpg';
   
-  minhaLista:Produtos[] = [];
+  minhaLista:any[] = [];
   
   constructor(
-    private bancoDados: DatabaseService,
-    private loadinControl: LoadingController
+    private bancoDados:FirebaseService,
+    private loadinControl:LoadingController
     ){}
 
   ngOnInit():void{
     this.carregando();
-    this.bancoDados.consulta().subscribe(caixa => this.minhaLista = caixa);
+    this.bancoDados.consulta().subscribe(results => this.minhaLista = results);
   }
 
   excluir(id:number){

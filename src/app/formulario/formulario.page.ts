@@ -1,6 +1,6 @@
+import { FirebaseService } from './../servico/firebase.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DatabaseService } from '../servico/database.service';
 
 @Component({
   selector: 'app-formulario',
@@ -17,7 +17,7 @@ export class FormularioPage implements OnInit{
   
   constructor(
     private formBuilder:FormBuilder,
-    private bancoDados:DatabaseService
+    private bancoDados:FirebaseService
     ){}
 
   ngOnInit() {
