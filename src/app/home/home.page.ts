@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { FirebaseService } from '../servico/firebase.service';
 
 @Component({
@@ -7,38 +7,50 @@ import { FirebaseService } from '../servico/firebase.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })
-
 export class HomePage implements OnInit{
   titulo = 'ShoppingList';
-  imagem = 'https://cdn.pixabay.com/photo/2015/09/21/14/24/supermarket-949913_1280.jpg';
+  imagem = 'https://cdn.pixabay.com/photo/2016/03/26/16/44/tomatoes-1280859_640.jpg';
   
   minhaLista:any[] = [];
-  
+
   constructor(
-    private bancoDados:FirebaseService,
-    private loadinControl:LoadingController
-    ){}
+    private firebaseService: FirebaseService,
+    private loadinControl: LoadingController,
+    private toast: ToastController
+    ){};
 
-  ngOnInit():void{
+  ngOnInit(): void {
     this.carregando();
-    this.bancoDados.consulta().subscribe(results => this.minhaLista = results);
-  }
-
-  excluir(id:number){
-    this.bancoDados.excluir(id);
-    setTimeout(this.refresh, 1000);
-  }
-
-  refresh(){
-    location.reload();
-  }
+    this.firebaseService.consulta().subscribe(results => this.minhaLista = results);
+  };
 
   async carregando(){
     const load = this.loadinControl.create({
       mode: 'ios',
       message: 'Aguarde...',
-      duration: 1000
+      duration: 2000
     });
     (await load).present();
-  }
+  };
+
+  async mensagem(){
+    const msg = this.toast.create({
+      mode: 'ios',
+      message: 'Item exluído com sucesso!',
+      color: 'success',
+      position: 'bottom',
+      duration: 2000
+    });
+    (await msg).present();
+  };
+
+  apaguei(id: any){
+    this.firebaseService.excluir(id);
+    this.mensagem();
+    setTimeout(this.refresh,2000);
+  };
+
+  refresh(){
+    location.reload();
+  };
 }

@@ -1,6 +1,7 @@
-import { FirebaseService } from './../servico/firebase.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FirebaseService } from '../servico/firebase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulario',
@@ -9,18 +10,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 
 export class FormularioPage implements OnInit{
-  titulo = 'Cadastro';
-  imagem = 'https://cdn.pixabay.com/photo/2015/09/21/14/24/supermarket-949913_1280.jpg';
+  titulo = "Cadastro";
+  imagem = 'https://cdn.pixabay.com/photo/2016/03/26/16/44/tomatoes-1280859_640.jpg';
   nameButton = 'Cadastrar';
 
   form!:FormGroup;
-  
+
   constructor(
     private formBuilder:FormBuilder,
-    private bancoDados:FirebaseService
+
+    private firebaseService: FirebaseService,  
+    
+    private router: Router
     ){}
 
-  ngOnInit() {
+  ngOnInit(){
     this.validaForm();
   }
 
@@ -32,6 +36,8 @@ export class FormularioPage implements OnInit{
   }
 
   cadastroButton(){
-    this.bancoDados.cadastro(this.form.value);
+    this.firebaseService.cadastro(this.form.value);
+
+    this.router.navigate(['/']);
   }
 }

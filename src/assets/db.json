@@ -1,13 +1,23 @@
 {
   "produtos": [
     {
-      "item": "Leite Ninho",
-      "quant": "200g",
+      "item": "Arroz",
+      "quant": "2 kg",
+      "id": 1
+    },
+    {
+      "item": "Feijão",
+      "quant": "5 kg",
       "id": 2
     },
     {
-      "item": "Ovo ",
-      "quant": "12",
+      "item": "Batata",
+      "quant": "5 Kg",
+      "id": 3
+    },
+    {
+      "item": "Mamão",
+      "quant": "2 kg",
       "id": 4
     }
   ]

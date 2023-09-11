@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { FormularioPageRoutingModule } from './formulario-routing.module';
+import { UpdatePageRoutingModule } from './update-routing.module';
 
-import { FormularioPage } from './formulario.page';
+import { UpdatePage } from './update.page';
 import { HeaderModule } from '../componentes/header/header.module';
 
 @NgModule({
@@ -14,11 +14,11 @@ import { HeaderModule } from '../componentes/header/header.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    FormularioPageRoutingModule,
+    UpdatePageRoutingModule,
     ReactiveFormsModule,
     HeaderModule
   ],
-  declarations: [FormularioPage]
+  declarations: [UpdatePage]
 })
 
-export class FormularioPageModule{}
+export class UpdatePageModule{}
